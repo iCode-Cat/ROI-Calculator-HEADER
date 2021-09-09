@@ -2,8 +2,8 @@ import React from 'react';
 import styled from 'styled-components';
 
 const Wrapper = styled.ul`
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  gap: 1rem;
   position: absolute;
   min-width: 232px;
   padding: 2rem 1rem;
@@ -14,29 +14,42 @@ const Wrapper = styled.ul`
   background: #fff;
   box-shadow: 0px 17px 30px 0px rgba(0, 0, 0, 0.1);
   cursor: pointer;
+  color: rgba(52, 49, 76, 0.66);
 `;
 
 const Text = styled.a`
   position: relative;
-  background: red;
   list-style: none;
   max-width: 220px;
+  font-size: 1.6rem;
+  padding: 1rem 1rem;
+
+  &:hover {
+    background: #e4f6fc;
+  }
 `;
 
 const ExtentedWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  gap: 1rem;
   position: absolute;
-  top: 0;
-  right: -232px;
-  min-width: 232px;
+  top: -20px;
+  right: -245px;
+  width: 232px;
+  box-shadow: 0px 17px 30px 0px rgba(0, 0, 0, 0.1);
+  padding: 2rem 1rem;
+  color: rgba(52, 49, 76, 0.66);
 `;
 
 const Extented = styled.a`
   display: flex;
   flex-direction: column;
-  background: blue;
   max-width: 220px;
+  font-size: 1.6rem;
+  padding: 1rem;
+  &:hover {
+    background: #e4f6fc;
+  }
 `;
 
 const TabMenu = ({
@@ -54,10 +67,9 @@ const TabMenu = ({
     >
       {menuList.map((tab) => (
         <Text
+          href={tab.href}
           onMouseEnter={() => {
             tab.extends && setExtented(true);
-          }}
-          onMouseLeave={() => {
             !tab.extends && setExtented(false);
           }}
         >
@@ -65,7 +77,7 @@ const TabMenu = ({
           {tab.extends && extented && (
             <ExtentedWrapper>
               {tab.extendedTab.map((tab) => (
-                <Extented>{tab.name}</Extented>
+                <Extented href={tab.href}>{tab.name}</Extented>
               ))}
             </ExtentedWrapper>
           )}

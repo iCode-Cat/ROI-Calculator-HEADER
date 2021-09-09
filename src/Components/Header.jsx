@@ -25,12 +25,12 @@ const tabsObject = [
             href: 'https://cognni.ai/cognni-apps/#MIP',
           },
           {
-            name: 'Microsoft Information Protection (MIP)',
-            href: 'https://cognni.ai/cognni-apps/#MIP',
+            name: 'Microsoft Cloud App Security (MCAS) – coming soon',
+            href: 'https://cognni.ai/cognni-apps/#MCAS',
           },
           {
-            name: 'Microsoft Information Protection (MIP)',
-            href: 'https://cognni.ai/cognni-apps/#MIP',
+            name: 'Azure Sentinel – coming soon',
+            href: 'https://cognni.ai/cognni-apps/#Sentinel',
           },
         ],
       },
