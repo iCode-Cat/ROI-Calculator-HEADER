@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
+import Collapsible from './Collapsible';
 import TabMenu from './TabMenu';
 
 // JSON Object of Header
@@ -70,7 +71,10 @@ const Wrapper = styled.header`
   justify-content: space-between;
   align-items: center;
   min-height: 85px;
-  padding: 0 2.5rem;
+  padding: 2rem 2.5rem;
+  span {
+    cursor: pointer;
+  }
   .tab-wrapper {
     display: flex;
     align-items: center;
@@ -107,9 +111,9 @@ const HamburgerMenu = styled.div`
   }
 `;
 
-const NavigationWrapper = styled.div`
+const NavigationWrapperWeb = styled.div`
   display: none;
-  @media (min-width: 10em) {
+  @media (min-width: 50em) {
     display: grid;
     grid-auto-flow: column;
     gap: 36px;
@@ -141,6 +145,7 @@ const Button = styled.button`
 const Header = () => {
   const [tabIndex, seTabIndex] = useState(null);
   const [extented, setExtented] = useState(false);
+  const [mobActive, setMobActive] = useState(false);
 
   // Default Tab Index
   const defaultTabIndex = () => {
@@ -156,12 +161,21 @@ const Header = () => {
         src='https://cognni.ai/wp-content/uploads/2020/03/coggni-logo-600px.png'
         alt='Cognni'
       />
-      <HamburgerMenu>
-        <div className='bar'></div>
-        <div className='bar'></div>
-        <div className='bar'></div>
-      </HamburgerMenu>
-      <NavigationWrapper>
+      {mobActive ? (
+        <span
+          onClick={() => setMobActive(!mobActive)}
+          className='material-icons'
+        >
+          close
+        </span>
+      ) : (
+        <HamburgerMenu onClick={() => setMobActive(!mobActive)}>
+          <div className='bar'></div>
+          <div className='bar'></div>
+          <div className='bar'></div>
+        </HamburgerMenu>
+      )}
+      <NavigationWrapperWeb>
         {tabsObject.map((tab, index) => (
           <div className='tab-wrapper'>
             <Button onMouseEnter={() => seTabIndex(index)}>{tab.name}</Button>
@@ -183,7 +197,8 @@ const Header = () => {
         <Button pd bg='#2196f3' blue='#2196f3' textColor='#FFF'>
           <a href=''>Sign Up Free</a>
         </Button>
-      </NavigationWrapper>
+      </NavigationWrapperWeb>
+      {mobActive && <Collapsible tabsObject={tabsObject} />}
     </Wrapper>
   );
 };
