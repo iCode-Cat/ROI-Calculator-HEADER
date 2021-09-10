@@ -2,11 +2,13 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import Collapsible from './Collapsible';
 import TabMenu from './TabMenu';
+import AnimatedHamburger from './AnimatedHamburger';
 
 // JSON Object of Header
 const tabsObject = [
   {
     name: 'Solutions',
+    href: 'https://cognni.ai/use-cases/',
     menuList: [
       {
         name: 'Cloud Intelligence',
@@ -39,6 +41,7 @@ const tabsObject = [
   },
   {
     name: 'Use Cases',
+    href: 'https://cognni.ai/use-cases/',
     menuList: [
       {
         name: 'Govern All of Your Data',
@@ -70,8 +73,20 @@ const Wrapper = styled.header`
   grid-template-columns: auto auto;
   justify-content: space-between;
   align-items: center;
-  min-height: 85px;
   padding: 2rem 2.5rem;
+
+  /* Navigation Buttons */
+  .menu-btn {
+    background: none;
+    border-bottom: 1px solid rgba(0, 0, 0, 0);
+    border-radius: unset;
+    transition: unset;
+    padding-bottom: 0.3rem;
+    &:hover {
+      border-bottom: 1px solid black;
+    }
+  }
+
   span {
     cursor: pointer;
   }
@@ -92,25 +107,6 @@ const Logo = styled.img`
   }
 `;
 
-const HamburgerMenu = styled.div`
-  display: flex;
-  justify-content: space-between;
-  flex-direction: column;
-  height: 15px;
-  cursor: pointer;
-  .bar {
-    height: 2px;
-    width: 20px;
-    background: #000;
-  }
-  .bar:nth-child(2) {
-    width: 16px;
-  }
-  @media (min-width: 50em) {
-    display: none;
-  }
-`;
-
 const NavigationWrapperWeb = styled.div`
   display: none;
   @media (min-width: 50em) {
@@ -120,7 +116,7 @@ const NavigationWrapperWeb = styled.div`
   }
 `;
 
-const Button = styled.button`
+const Button = styled.a`
   cursor: pointer;
   color: ${(props) =>
     props.textColor ? props.textColor : 'rgba(52, 49, 76, 0.66)'};
@@ -132,13 +128,14 @@ const Button = styled.button`
   background: ${(props) => (props.bg ? props.bg : '#FFF')};
   transition: 0.3s;
   font-weight: 400;
+
   a {
     color: unset;
     text-decoration: unset;
   }
   &:hover {
     color: ${(props) => (props.textColor ? props.textColor : '#333')};
-    background: ${(props) => props.blue && '#2196f3'};
+    background: ${(props) => props.blue && '#1876c4'};
   }
 `;
 
@@ -161,24 +158,21 @@ const Header = () => {
         src='https://cognni.ai/wp-content/uploads/2020/03/coggni-logo-600px.png'
         alt='Cognni'
       />
-      {mobActive ? (
-        <span
-          onClick={() => setMobActive(!mobActive)}
-          className='material-icons'
-        >
-          close
-        </span>
-      ) : (
-        <HamburgerMenu onClick={() => setMobActive(!mobActive)}>
-          <div className='bar'></div>
-          <div className='bar'></div>
-          <div className='bar'></div>
-        </HamburgerMenu>
-      )}
+
+      <AnimatedHamburger setMobActive={setMobActive} mobActive={mobActive} />
+
       <NavigationWrapperWeb>
         {tabsObject.map((tab, index) => (
-          <div className='tab-wrapper'>
-            <Button onMouseEnter={() => seTabIndex(index)}>{tab.name}</Button>
+          <div key={index} className='tab-wrapper'>
+            {/* TAB BUTTONS IN LOOP */}
+            <Button
+              href={tab.href}
+              className='menu-btn'
+              onMouseEnter={() => seTabIndex(index)}
+            >
+              {tab.name}
+            </Button>
+            {/* TAB BUTTON' MENU */}
             {tabIndex === index && (
               <TabMenu
                 extented={extented}
@@ -191,13 +185,20 @@ const Header = () => {
             )}
           </div>
         ))}
-        <Button pd border>
+        <Button href='https://onboard.cognni.ai/login' pd border>
           Login
         </Button>
-        <Button pd bg='#2196f3' blue='#2196f3' textColor='#FFF'>
-          <a href=''>Sign Up Free</a>
+        <Button
+          href='https://onboard.cognni.ai/login'
+          pd
+          bg='#2196f3'
+          blue='#2196f3'
+          textColor='#FFF'
+        >
+          Sign Up Free
         </Button>
       </NavigationWrapperWeb>
+      {/* ONLY MOBILE */}
       {mobActive && <Collapsible tabsObject={tabsObject} />}
     </Wrapper>
   );
