@@ -51,6 +51,7 @@ const ExtentedWrapper = styled.div`
   box-shadow: 0px 17px 30px 0px rgba(0, 0, 0, 0.1);
   padding: 2rem 0rem;
   color: rgba(52, 49, 76, 0.66);
+  background: #fff;
   animation: ${Fade} 0.1s ease-in-out forwards;
 `;
 
