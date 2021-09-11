@@ -74,7 +74,7 @@ const Wrapper = styled.header`
   justify-content: space-between;
   align-items: center;
   padding: 2rem 2.5rem;
-  background: red;
+  background: #fff;
   /* Navigation Buttons */
   .menu-btn {
     background: none;
