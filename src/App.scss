@@ -5,6 +5,8 @@
   line-height: 150%;
   font-family: 'Montserrat', sans-serif;
   /* background: #1876c4; */
+  // Remove Highlight
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 
 html {
