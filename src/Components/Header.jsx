@@ -185,10 +185,16 @@ const Header = () => {
             )}
           </div>
         ))}
-        <Button href='https://onboard.cognni.ai/login' pd border>
+        <Button
+          target='_parent'
+          href='https://onboard.cognni.ai/login'
+          pd
+          border
+        >
           Login
         </Button>
         <Button
+          target='_parent'
           href='https://onboard.cognni.ai/login'
           pd
           bg='#2196f3'
