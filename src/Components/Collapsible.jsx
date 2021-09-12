@@ -101,6 +101,7 @@ const Collapsible = ({ tabsObject }) => {
                   <a
                     className={`${!ctx.extends && 'grid-fix'}`}
                     href={ctx.href}
+                    target='_parent'
                   >
                     {ctx.name}
                   </a>
@@ -117,7 +118,10 @@ const Collapsible = ({ tabsObject }) => {
                       {ctx.extendedTab.map(
                         (item) =>
                           extraTab && (
-                            <ExpandWrapperExtra href={item.href}>
+                            <ExpandWrapperExtra
+                              target='_parent'
+                              href={item.href}
+                            >
                               {item.name}
                             </ExpandWrapperExtra>
                           )

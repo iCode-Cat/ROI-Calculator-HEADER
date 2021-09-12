@@ -166,6 +166,7 @@ const Header = () => {
           <div key={index} className='tab-wrapper'>
             {/* TAB BUTTONS IN LOOP */}
             <Button
+              target='_parent'
               href={tab.href}
               className='menu-btn'
               onMouseEnter={() => seTabIndex(index)}

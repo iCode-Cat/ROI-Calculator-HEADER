@@ -84,6 +84,7 @@ const TabMenu = ({
         <Text
           key={index}
           href={tab.href}
+          target='_parent'
           onMouseEnter={() => {
             tab.extends && setExtented(true);
             !tab.extends && setExtented(false);
@@ -93,7 +94,7 @@ const TabMenu = ({
           {tab.extends && extented && (
             <ExtentedWrapper>
               {tab.extendedTab.map((tab, index) => (
-                <Extented key={index} href={tab.href}>
+                <Extented key={index} target='_parent' href={tab.href}>
                   {tab.name}
                 </Extented>
               ))}
