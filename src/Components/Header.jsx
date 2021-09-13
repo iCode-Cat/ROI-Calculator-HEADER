@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import Collapsible from './Collapsible';
 import TabMenu from './TabMenu';
@@ -7,6 +7,7 @@ import AnimatedHamburger from './AnimatedHamburger';
 // JSON Object of Header
 const tabsObject = [
   {
+    id: 0,
     name: 'Solutions',
     href: 'https://cognni.ai/use-cases/',
     menuList: [
@@ -40,6 +41,7 @@ const tabsObject = [
     ],
   },
   {
+    id: 1,
     name: 'Use Cases',
     href: 'https://cognni.ai/use-cases/',
     menuList: [
@@ -59,10 +61,10 @@ const tabsObject = [
         name: 'Investigate Incidents in Depth',
         href: 'https://cognni.ai/wp-content/uploads/2020/08/Use-Case-Investigate-Incidents-in-Depth.pdf',
       },
-      {
-        name: 'Enhanced Incident Remediation',
-        href: 'https://cognni.ai/wp-content/uploads/2020/08/Use-Case-Enhanced-Incident-Remediation.pdf',
-      },
+      // {
+      //   name: 'Enhanced Incident Remediation',
+      //   href: 'https://cognni.ai/wp-content/uploads/2020/08/Use-Case-Enhanced-Incident-Remediation.pdf',
+      // },
     ],
   },
 ];
@@ -72,9 +74,9 @@ const Wrapper = styled.header`
   display: grid;
   grid-template-columns: auto auto;
   justify-content: space-between;
-  align-items: center;
+  align-items: flex-start;
   padding: 2rem 2.5rem;
-  background: #fff;
+  height: ${(props) => (props.tabIndex ? '500px' : 'unset')};
   /* Navigation Buttons */
   .menu-btn {
     background: none;
@@ -139,8 +141,7 @@ const Button = styled.a`
   }
 `;
 
-const Header = () => {
-  const [tabIndex, seTabIndex] = useState(null);
+const Header = ({ header, tabIndex, seTabIndex }) => {
   const [extented, setExtented] = useState(false);
   const [mobActive, setMobActive] = useState(false);
 
@@ -153,7 +154,11 @@ const Header = () => {
   };
 
   return (
-    <Wrapper onMouseLeave={defaultTabIndex}>
+    <Wrapper
+      tabIndex={tabIndex !== null ? true : false}
+      ref={header}
+      onMouseLeave={defaultTabIndex}
+    >
       <Logo
         src='https://cognni.ai/wp-content/uploads/2020/03/coggni-logo-600px.png'
         alt='Cognni'
