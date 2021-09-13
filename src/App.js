@@ -5,7 +5,6 @@ import { useEffect, useRef, useState } from 'react';
 function App() {
   const header = useRef();
   const [tabIndex, seTabIndex] = useState(null);
-  const [height, setHeight] = useState();
 
   const sendMessageParent = (msg) => {
     window.parent.postMessage(msg, '*');
@@ -14,6 +13,7 @@ function App() {
   useEffect(() => {
     setInterval(() => {
       let scrollSize = header.current.clientHeight;
+      console.log(scrollSize);
       sendMessageParent(scrollSize);
     }, 100);
   }, []);
