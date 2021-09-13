@@ -100,6 +100,7 @@ const Wrapper = styled.header`
   }
   @media (min-width: 50em) {
     padding: 3rem 6rem;
+    background: unset;
   }
 `;
 
