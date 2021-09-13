@@ -14,7 +14,7 @@ function App() {
     setInterval(() => {
       let scrollSize = header.current.clientHeight;
       sendMessageParent({ message: scrollSize });
-    }, 1000);
+    }, 100);
   }, []);
 
   return (

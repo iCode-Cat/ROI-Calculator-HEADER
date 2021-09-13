@@ -9,7 +9,7 @@ const AnimatedHamburger = ({ setMobActive, mobActive }) => {
 
   return (
     <div onClick={animateHandler} className='menu-wrapper'>
-      <div ref={anim} class='hamburger-menu'></div>
+      <div ref={anim} className='hamburger-menu'></div>
     </div>
   );
 };

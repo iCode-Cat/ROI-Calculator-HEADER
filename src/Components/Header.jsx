@@ -76,7 +76,7 @@ const Wrapper = styled.header`
   justify-content: space-between;
   align-items: flex-start;
   padding: 2rem 2.5rem;
-  height: ${(props) => (props.tabIndex ? '500px' : 'unset')};
+  height: ${(props) => (props.expand ? '500px' : 'unset')};
   /* Navigation Buttons */
   .menu-btn {
     background: none;
@@ -155,7 +155,7 @@ const Header = ({ header, tabIndex, seTabIndex }) => {
 
   return (
     <Wrapper
-      tabIndex={tabIndex !== null ? true : false}
+      expand={tabIndex !== null}
       ref={header}
       onMouseLeave={defaultTabIndex}
     >
