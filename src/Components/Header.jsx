@@ -76,6 +76,7 @@ const Wrapper = styled.header`
   justify-content: space-between;
   align-items: flex-start;
   padding: 2rem 2.5rem;
+  background: #fff;
   height: ${(props) => (props.expand ? '500px' : 'unset')};
   /* Navigation Buttons */
   .menu-btn {
