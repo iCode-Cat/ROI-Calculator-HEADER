@@ -6,16 +6,15 @@ function App() {
   const header = useRef();
   const [tabIndex, seTabIndex] = useState(null);
 
-  const sendMessageParent = (msg) => {
-    window.parent.postMessage(msg, '*');
+  const sendMessageParent = ({ message }) => {
+    window.parent.postMessage(message, '*');
   };
 
   useEffect(() => {
     setInterval(() => {
       let scrollSize = header.current.clientHeight;
-      console.log(scrollSize);
-      sendMessageParent(scrollSize);
-    }, 100);
+      sendMessageParent({ message: scrollSize });
+    }, 1000);
   }, []);
 
   return (
